@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Crupier's turn</title>
+</head>
+<body>
+<body>
+<h1>Tus cartas son:</h1>
+<h2 th:each="card : ${hand}">
+    <a th:text="${card.number}"></a><a th:text="${card.kind}"></a>
+</h2>
+<h2>Tu puntuación es: <span th:text="${score}"></span></h2>
+</body>
+
+<h1>Las cartas del croupier son:</h1>
+<h2 th:each="card : ${croupierhand}">
+    <a th:text="${card.number}"></a><a th:text="${card.kind}"></a>
+</h2>
+<h2>La puntuación del croupier es: <span th:text="${croupierscore}"></span></h2>
+</body>
+
+<h1>Has ganado! Pide otra mano ;)</h1>
+<form action="/blackjack/gethand">
+    <input type="submit" value="Get new hand"/>
+</form>
+
+</body>
+</html>

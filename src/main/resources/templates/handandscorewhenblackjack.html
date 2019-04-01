@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hand cards</title>
+</head>
+<body>
+<h1>Tus cartas son:</h1>
+<h2 th:each="card : ${hand}">
+<a th:text="${card.number}"></a><a th:text="${card.kind}"></a>
+</h2>
+<h2>Tu puntuación es: <span th:text="${score}"></span></h2>
+<h1>Enhorabuena! Tienes Blackjack, la casa paga 3:2</h1>
+<form action="/blackjack/gethand">
+    <input type="submit" value="Get new hand"/>
+</form>
+</body>
+</html>
