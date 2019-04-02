@@ -2,33 +2,35 @@ package com.example.testPoker.model;
 
 import com.example.testPoker.model.game.Card;
 import com.example.testPoker.service.game.ScoreCalculator;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class PlayerTest {
+@Test
+@ContextConfiguration(locations = {"classpath:spring-test-config.xml"})
+public class PlayerTest extends AbstractTestNGSpringContextTests {
 
-    @MockBean(name = "scoreCalculator")
+    @InjectMocks
+    private Player player;
+
+    @Mock
     private ScoreCalculator scoreCalculator;
 
-    @Test
-    public void testPlayerConstruction() {
-        //When
-        Player player = new Player();
-        //Then
-        Assert.assertEquals(player.getHand(), Collections.emptyList());
-        Assert.assertEquals(player.getScore(), 0);
-        Assert.assertNull(player.getPlayerStatus());
+
+    @BeforeMethod
+    public void init() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -37,8 +39,6 @@ public class PlayerTest {
         Card card = Mockito.mock(Card.class);
         List<Card> hand = Arrays.asList(card);
         when(scoreCalculator.checkHandScore(hand)).thenReturn(10);
-
-        Player player = new Player();
 
         //When
         player.addCardToHand(card);

@@ -2,27 +2,26 @@ package com.example.testPoker.model;
 
 import com.example.testPoker.model.game.Card;
 import com.example.testPoker.model.game.PlayerStatus;
-import com.example.testPoker.model.utils.SpringContext;
 import com.example.testPoker.service.game.ScoreCalculator;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@Scope("prototype")
 public class Player {
 
-    private List<Card> hand;
+    @Autowired
+    private ScoreCalculator scoreCalculator;
+
+    private List<Card> hand = new ArrayList<>();
     private int score;
     private PlayerStatus playerStatus;
 
-    public Player() {
-        hand = new ArrayList<>();
-        score = 0;
-    }
-
     public void addCardToHand(Card card) {
-        ApplicationContext context = SpringContext.getApplicationContext();
-        ScoreCalculator scoreCalculator = (ScoreCalculator) context.getBean("scoreCalculator");
         hand.add(card);
         score = scoreCalculator.checkHandScore(hand);
     }

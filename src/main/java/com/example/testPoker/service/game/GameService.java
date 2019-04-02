@@ -15,9 +15,11 @@ public class GameService {
     private static final int STARTING_CARDS = 2;
 
     private List<Card> blackjackDeck;
-    private Player player;
-    private Player croupier;
 
+    @Autowired
+    private Player player;
+    @Autowired
+    private Player croupier;
     @Autowired
     private DeckGenerator deckGenerator;
     @Autowired
@@ -30,9 +32,6 @@ public class GameService {
     }
 
     public int initGame() {
-        player = new Player();
-        croupier = new Player();
-
         blackjackDeck = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             List<Card> simpleDeck = createDeck();
