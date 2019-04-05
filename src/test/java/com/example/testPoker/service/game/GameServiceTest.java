@@ -46,18 +46,6 @@ public class GameServiceTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void testCreateDeck() {
-        //Given
-        List<Card> expectedDeck = new ArrayList<>();
-        when(deckGenerator.createDeck()).thenReturn(expectedDeck);
-
-        //When
-        List<Card> actualDeck = deckGenerator.createDeck();
-
-        //Then
-        Assert.assertEquals(actualDeck, expectedDeck);
-    }
 
     @Test
     public void testInitGame() {

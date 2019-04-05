@@ -27,14 +27,11 @@ public class GameService {
     @Autowired
     private ScoreCalculator scoreCalculator;
 
-    public List<Card> createDeck() {
-        return deckGenerator.createDeck();
-    }
 
     public int initGame() {
         blackjackDeck = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            List<Card> simpleDeck = createDeck();
+            List<Card> simpleDeck = deckGenerator.createDeck();
             blackjackDeck.addAll(simpleDeck);
         }
         return blackjackDeck.size();

@@ -58,7 +58,7 @@ public class BlackjackController {
     }
 
     @GetMapping("/stand")
-    public ModelAndView stand() throws InterruptedException {
+    public ModelAndView stand() {
         ModelAndView modelAndView = new ModelAndView();
         if (gameService.stand()) {
             modelAndView.setViewName("croupierturnwin");
